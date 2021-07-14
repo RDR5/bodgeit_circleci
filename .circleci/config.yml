@@ -39,6 +39,7 @@ jobs:
       
       - run:
           name: Run Checkmarx CxSAST Scan
+          command: |
             cd ~/ \
             jar -xf CxConsolePlugin-1.1.5.zip \
             rm CxConsolePlugin-1.1.5.zip \
