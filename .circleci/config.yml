@@ -29,27 +29,12 @@ jobs:
       # Run Checkmarx CxSAST Scan
       - run:
           name: Install CLI Plugin
-          command: wget -O ~/CLI $env:CLI_URL
-
-      - run:
-          name: Unzip CLI    
-          command: ls ~/CLI
-
-      # Run Checkmarx OSA Scan
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: gradle dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      # run tests!
-      - run: gradle test
+          #command: wget -O ~/CLI $env:CLI_URL
+          # https://download.checkmarx.com/9.3.0GA/Plugins/CxConsolePlugin-1.1.5.zip
+          command: |
+            curl -k $CLI_URL -O cli.zip && jar -xf cli.zip && chmod a+x cli \
+            cd cli \
+            java -version \
+            whoami \
+            pwd \
+            .\runCxConsole.cmd  scan -v -Projectname "$CX_TEAM/$CIRCLE_PROJECT_REPONAME" -CxServer $CX_SERVER -cxuser $CX_USER -cxpassword $CX_PASSWORD -locationtype folder -locationpath $CIRCLE_WORKING_DIRECTORY -preset $CX_PRESET
