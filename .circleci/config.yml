@@ -35,7 +35,11 @@ jobs:
           # curl -O -k http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-8.60.1.zip && jar -xf CxConsolePlugin-8.60.1.zip && rm CxConsolePlugin-8.60.1.zip && chmod a+x CxConsolePlugin-8.60.1
           # curl -k $CLI_URL -O cli.zip && jar -xf cli.zip && chmod a+x cli \
           command: |
-            wget -O CxConsolePlugin-1.1.5.zip http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-1.1.5.zip \
+            wget -O CxConsolePlugin-1.1.5.zip http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-1.1.5.zip
+      
+      - run:
+          name: Run Checkmarx CxSAST Scan
+            cd ~/ \
             jar -xf CxConsolePlugin-1.1.5.zip \
             rm CxConsolePlugin-1.1.5.zip \
             chmod a+x CxConsolePlugin-1.1.5 \
