@@ -37,7 +37,7 @@ jobs:
           command: |
             sudo apt-get curl \
             sudo apt upgrade curl \
-            curl -O -k http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-1.1.5.zip && jar -xf CxConsolePlugin-1.1.5.zip && rm CxConsolePlugin-1.1.5.zip && chmod a+x CxConsolePlugin-1.1.5 \
+            curl --remote-name --insecure http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-1.1.5.zip && jar -xf CxConsolePlugin-1.1.5.zip && rm CxConsolePlugin-1.1.5.zip && chmod a+x CxConsolePlugin-1.1.5 \
             cd cli \
             java -version \
             whoami \
