@@ -29,11 +29,15 @@ jobs:
       # Run Checkmarx CxSAST Scan
       - run:
           name: Install CLI Plugin
-          #command: wget -O ~/CLI $env:CLI_URL
+          # command: wget -O ~/CLI $env:CLI_URL
+          # apk add --update curl
           # https://download.checkmarx.com/9.3.0GA/Plugins/CxConsolePlugin-1.1.5.zip
+          # curl -O -k http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-8.60.1.zip && jar -xf CxConsolePlugin-8.60.1.zip && rm CxConsolePlugin-8.60.1.zip && chmod a+x CxConsolePlugin-8.60.1
+          # curl -k $CLI_URL -O cli.zip && jar -xf cli.zip && chmod a+x cli \
           command: |
-            apk add --update curl
-            curl -k $CLI_URL -O cli.zip && jar -xf cli.zip && chmod a+x cli \
+            sudo apt-get curl \
+            sudo apt upgrade curl \
+            curl -O -k http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-1.1.5.zip && jar -xf CxConsolePlugin-1.1.5.zip && rm CxConsolePlugin-1.1.5.zip && chmod a+x CxConsolePlugin-1.1.5 \
             cd cli \
             java -version \
             whoami \
