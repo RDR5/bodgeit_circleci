@@ -37,7 +37,7 @@ jobs:
           command: |
             sudo apt-get curl \
             sudo apt upgrade curl \
-            curl http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-1.1.5.zip -k -O \
+            curl http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-1.1.5.zip -o CxConsolePlugin-1.1.5.zip \
             jar -xf CxConsolePlugin-1.1.5.zip \
             rm CxConsolePlugin-1.1.5.zip \
             chmod a+x CxConsolePlugin-1.1.5 \
