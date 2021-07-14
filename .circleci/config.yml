@@ -35,11 +35,14 @@ jobs:
           # curl -O -k http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-8.60.1.zip && jar -xf CxConsolePlugin-8.60.1.zip && rm CxConsolePlugin-8.60.1.zip && chmod a+x CxConsolePlugin-8.60.1
           # curl -k $CLI_URL -O cli.zip && jar -xf cli.zip && chmod a+x cli \
           command: |
+            cd /home/circleci/repo \
             wget -O CxConsolePlugin-1.1.5.zip https://download.checkmarx.com/9.3.0GA/Plugins/CxConsolePlugin-1.1.5.zip
       
       - run:
           name: Run Checkmarx CxSAST Scan
           command: |
+            cd /home/circleci/repo \
+            ls -a \
             pwd \
             jar -xf CxConsolePlugin-1.1.5.zip \
             rm CxConsolePlugin-1.1.5.zip \
@@ -48,4 +51,5 @@ jobs:
             java -version \
             whoami \
             pwd \
+            ls -a \
             ./runCxConsole.sh  scan -v -Projectname "$CX_TEAM/$CIRCLE_PROJECT_REPONAME" -CxServer $CX_SERVER -cxuser $CX_USER -cxpassword $CX_PASSWORD -locationtype folder -locationpath $CIRCLE_WORKING_DIRECTORY -preset $CX_PRESET
