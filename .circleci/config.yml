@@ -44,6 +44,7 @@ jobs:
             cd /home/circleci/repo
             ls -a
             pwd
+            chmod a+x CxConsolePlugin-1.1.5.zip
             jar -xf CxConsolePlugin-1.1.5.zip
             rm CxConsolePlugin-1.1.5.zip
             chmod a+x CxConsolePlugin-1.1.5
